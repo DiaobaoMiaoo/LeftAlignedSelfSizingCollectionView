@@ -20,6 +20,8 @@ class ChipContainerView: UIView {
     init() {
         super.init(frame: .zero)
         
+        translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -35,6 +37,13 @@ class ChipContainerView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    override var intrinsicContentSize: CGSize {
+//        let superContentSize = super.intrinsicContentSize
+//        let width = superContentSize.width
+//        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+//        return CGSize(width: width, height: height)
+//    }
     
     private let collectionView: UICollectionView = {
         let alignedFlowLayout = AlignedCollectionViewFlowLayout()
