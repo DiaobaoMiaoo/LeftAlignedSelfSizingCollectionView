@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             container.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        container.viewModel = ["123", "123", "123", "123"]
+        container.viewModel = ["12fesfsefse3", "123123123", "112233", "112312312312123123123121323323", "12fesfsefse3", "123123123", "112233", "112312312312123123123121323323", "12fesfsefse3", "123123123", "112233", "112312312312123123123121323323", "12fesfsefse3", "123123123", "112233", "112312312312123123123121323323"]
     }
     
     private let container: ChipContainerView = {

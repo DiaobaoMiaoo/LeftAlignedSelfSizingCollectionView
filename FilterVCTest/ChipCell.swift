@@ -36,6 +36,7 @@ class ChipCell: UICollectionViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         label.textColor = .red
         label.backgroundColor = .green
         return label

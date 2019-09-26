@@ -37,7 +37,10 @@ class ChipContainerView: UIView {
     }
     
     private let collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let alignedFlowLayout = AlignedCollectionViewFlowLayout()
+        alignedFlowLayout.horizontalAlignment = .leading
+        alignedFlowLayout.estimatedItemSize = .init(width: 100, height: 40)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
         collectionView.backgroundColor = .lightGray
         collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,16 +62,5 @@ extension ChipContainerView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chipCell", for: indexPath) as! ChipCell
         cell.text = viewModel[indexPath.row]
         return cell
-    }
-}
-
-extension ChipContainerView: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 50)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 }
