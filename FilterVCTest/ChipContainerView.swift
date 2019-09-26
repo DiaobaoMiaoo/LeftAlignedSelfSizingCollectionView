@@ -17,6 +17,8 @@ class ChipContainerView: UIView {
         }
     }
     
+    var heightConstraint: NSLayoutConstraint?
+    
     init() {
         super.init(frame: .zero)
         
@@ -31,19 +33,26 @@ class ChipContainerView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        collectionView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
+        heightConstraint = heightAnchor.constraint(equalToConstant: 0.0)
+        heightConstraint?.isActive = true
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+        heightConstraint?.constant = height
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    override var intrinsicContentSize: CGSize {
-//        let superContentSize = super.intrinsicContentSize
-//        let width = superContentSize.width
-//        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-//        return CGSize(width: width, height: height)
-//    }
+
+    override var intrinsicContentSize: CGSize {
+        return collectionView.collectionViewLayout.collectionViewContentSize
+    }
     
     private let collectionView: UICollectionView = {
         let alignedFlowLayout = AlignedCollectionViewFlowLayout()
