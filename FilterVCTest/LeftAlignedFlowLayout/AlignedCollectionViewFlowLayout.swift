@@ -1,39 +1,8 @@
-//
-//  AlignedCollectionViewFlowLayout.swift
-//
-//  Created by Mischa Hildebrand on 12/04/2017.
-//  Copyright © 2017 Mischa Hildebrand.
-//
-//  Licensed under the terms of the MIT license:
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
 
 import UIKit
 
-
-// MARK: - 🦆 Type definitions
-
-/// An abstract protocol that defines an alignment.
 protocol Alignment {}
 
-/// Defines a horizontal alignment for UI elements.
 public enum HorizontalAlignment: Alignment {
     case left
     case right
@@ -42,7 +11,6 @@ public enum HorizontalAlignment: Alignment {
     case justified
 }
 
-/// Defines a vertical alignment for UI elements.
 public enum VerticalAlignment: Alignment {
     case top
     case center
@@ -79,14 +47,7 @@ private struct AlignmentAxis<A: Alignment> {
 /// and you can specify how the cells are vertically aligned in their row.
 open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
-    // MARK: - 🔶 Properties
-    
-    /// Determines how the cells are horizontally aligned in a row.
-    /// - Note: The default is `.justified`.
     public var horizontalAlignment: HorizontalAlignment = .justified
-
-    /// Determines how the cells are vertically aligned in a row.
-    /// - Note: The default is `.center`.
     public var verticalAlignment: VerticalAlignment = .center
 
     /// The `horizontalAlignment` with its layout direction specifics resolved,
