@@ -14,13 +14,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(container)
         view.addSubview(button)
         NSLayoutConstraint.activate([
-            container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
             button.topAnchor.constraint(equalTo: container.bottomAnchor, constant: 20.0),
             button.centerXAnchor.constraint(equalTo: container.centerXAnchor)
         ])
@@ -35,11 +30,8 @@ class ViewController: UIViewController {
         container.viewModel = viewModel
     }
     
-    private let container: ChipContainerView = {
-        let container = ChipContainerView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
+
+    @IBOutlet weak var container: ChipContainerView!
     
     private let button: UIButton = {
         let button = UIButton()

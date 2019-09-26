@@ -65,7 +65,6 @@
 
     if (isFirstItemInSection) {
         [currentItemAttributes leftAlignFrameWithSectionInset:sectionInset];
-        NSLog(@"Attribute----%@", NSStringFromCGRect(currentItemAttributes.frame));
         return currentItemAttributes;
     }
 
@@ -84,14 +83,12 @@
     if (isFirstItemInRow) {
         // make sure the first item on a line is left aligned
         [currentItemAttributes leftAlignFrameWithSectionInset:sectionInset];
-        NSLog(@"Attribute----%@", NSStringFromCGRect(currentItemAttributes.frame));
         return currentItemAttributes;
     }
 
     CGRect frame = currentItemAttributes.frame;
     frame.origin.x = previousFrameRightPoint + [self evaluatedMinimumInteritemSpacingForSectionAtIndex:indexPath.section];
     currentItemAttributes.frame = frame;
-    NSLog(@"Attribute----%@", NSStringFromCGRect(currentItemAttributes.frame));
     return currentItemAttributes;
 }
 

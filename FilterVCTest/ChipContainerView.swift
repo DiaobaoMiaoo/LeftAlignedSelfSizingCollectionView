@@ -23,7 +23,29 @@ class ChipContainerView: UIView {
         super.init(frame: .zero)
         
         print("init")
+        initialize()
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
+        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
+        heightConstraint?.constant = height
+    }
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+        print("awakeFromNib")
+        initialize()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        print("coder")
+        initialize()
+    }
+
+    private func initialize() {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(collectionView)
@@ -41,23 +63,6 @@ class ChipContainerView: UIView {
         heightConstraint?.isActive = true
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        heightConstraint?.constant = height
-    }
-    
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        print("awakeFromNib")
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print("coder")
-    }
-
     override var intrinsicContentSize: CGSize {
         return collectionView.collectionViewLayout.collectionViewContentSize
     }
@@ -73,15 +78,15 @@ class ChipContainerView: UIView {
 //        return collectionView
 //    }()
     
-    private let collectionView: UICollectionView = {
-        let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
-        alignedFlowLayout.estimatedItemSize = .init(width: 100, height: 40)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
-        collectionView.backgroundColor = .lightGray
-        collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
+        private let collectionView: UICollectionView = {
+            let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
+            alignedFlowLayout.estimatedItemSize = .init(width: 100, height: 40)
+            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
+            collectionView.backgroundColor = .lightGray
+            collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+            return collectionView
+        }()
 }
 
 extension ChipContainerView: UICollectionViewDelegate {
