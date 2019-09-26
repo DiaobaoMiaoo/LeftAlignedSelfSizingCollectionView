@@ -17,7 +17,7 @@ class ChipContainerView: UIView {
         }
     }
     
-    var heightConstraint: NSLayoutConstraint?
+    var onHeightChanged: ((CGFloat) -> Void)?
     
     init() {
         super.init(frame: .zero)
@@ -29,7 +29,7 @@ class ChipContainerView: UIView {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        heightConstraint?.constant = height
+        onHeightChanged?(height)
     }
     
     override class func awakeFromNib() {
@@ -59,8 +59,6 @@ class ChipContainerView: UIView {
         ])
         
         collectionView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
-        heightConstraint = heightAnchor.constraint(equalToConstant: 0.0)
-        heightConstraint?.isActive = true
     }
     
     override var intrinsicContentSize: CGSize {

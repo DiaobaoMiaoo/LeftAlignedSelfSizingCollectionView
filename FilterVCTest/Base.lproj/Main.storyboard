@@ -15,11 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQ7-Ee-Thx" customClass="ChipContainerView" customModule="FilterVCTest" customModuleProvider="target">
-                                <rect key="frame" x="20" y="64" width="374" height="0.0"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQ7-Ee-Thx" customClass="ChipContainerView" customModule="FilterVCTest" customModuleProvider="target">
+                                <rect key="frame" x="20" y="64" width="374" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="qq5-vg-VVx"/>
+                                    <constraint firstAttribute="height" constant="20" id="tkf-7w-pvK"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -33,6 +33,7 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="gQ7-Ee-Thx" id="Cbr-Ja-BlX"/>
+                        <outlet property="containerHeightConstraint" destination="tkf-7w-pvK" id="QwH-iN-Qyd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
