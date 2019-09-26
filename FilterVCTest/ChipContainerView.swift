@@ -21,74 +21,42 @@ class ChipContainerView: UIView {
     
     init() {
         super.init(frame: .zero)
-        
-        print("init")
         initialize()
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        let height = collectionView.collectionViewLayout.collectionViewContentSize.height
-        onHeightChanged?(height)
-    }
-    
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        print("awakeFromNib")
-        initialize()
-    }
-    
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        print("coder")
         initialize()
     }
 
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        let height = collectionView.collectionViewLayout.collectionViewContentSize.height + collectionView.contentInset.top + collectionView.contentInset.bottom
+        onHeightChanged?(height)
+    }
+    
     private func initialize() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(collectionView)
-        collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.delegate = self
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
         collectionView.addObserver(self, forKeyPath: "contentSize", options: .old, context: nil)
     }
     
-    override var intrinsicContentSize: CGSize {
-        return collectionView.collectionViewLayout.collectionViewContentSize
-    }
-    
-//    private let collectionView: UICollectionView = {
-//        let alignedFlowLayout = AlignedCollectionViewFlowLayout()
-//        alignedFlowLayout.horizontalAlignment = .leading
-//        alignedFlowLayout.estimatedItemSize = .init(width: 100, height: 40)
-//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
-//        collectionView.backgroundColor = .lightGray
-//        collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        return collectionView
-//    }()
-    
-        private let collectionView: UICollectionView = {
-            let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
-            alignedFlowLayout.estimatedItemSize = .init(width: 100, height: 40)
-            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
-            collectionView.backgroundColor = .lightGray
-            collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-            return collectionView
-        }()
-}
-
-extension ChipContainerView: UICollectionViewDelegate {
-    
+    private let collectionView: UICollectionView = {
+        let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
+        alignedFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
+        collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
+        collectionView.contentInset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+        collectionView.isScrollEnabled = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
 }
 
 extension ChipContainerView: UICollectionViewDataSource {
@@ -101,5 +69,16 @@ extension ChipContainerView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chipCell", for: indexPath) as! ChipCell
         cell.text = viewModel[indexPath.row]
         return cell
+    }
+}
+
+extension ChipContainerView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 5.0
     }
 }

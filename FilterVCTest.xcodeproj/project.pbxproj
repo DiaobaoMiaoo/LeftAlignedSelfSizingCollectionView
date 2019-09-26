@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		965BCC7B233D0F620014A810 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965BCC7A233D0F620014A810 /* AlignedCollectionViewFlowLayout.swift */; };
 		965EFEE5233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */; };
 		966F368D233CFDD5003C7D1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F368C233CFDD5003C7D1C /* AppDelegate.swift */; };
 		966F3691233CFDD5003C7D1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F3690233CFDD5003C7D1C /* ViewController.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		965BCC7A233D0F620014A810 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		965EFEE2233D307900A9AE8E /* FilterVCTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilterVCTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
 		965EFEE4233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 		96D68C20233D0892000F2941 /* LeftAlignedFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
-				965BCC7A233D0F620014A810 /* AlignedCollectionViewFlowLayout.swift */,
 				965EFEE4233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.h */,
 				965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */,
 				965EFEE2233D307900A9AE8E /* FilterVCTest-Bridging-Header.h */,
@@ -167,7 +164,6 @@
 				965EFEE5233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				966F3691233CFDD5003C7D1C /* ViewController.swift in Sources */,
 				966F36A3233CFF27003C7D1C /* ChipCell.swift in Sources */,
-				965BCC7B233D0F620014A810 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				966F36A1233CFE12003C7D1C /* ChipContainerView.swift in Sources */,
 				966F368D233CFDD5003C7D1C /* AppDelegate.swift in Sources */,
 			);

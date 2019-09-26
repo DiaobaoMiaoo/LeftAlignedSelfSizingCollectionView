@@ -19,12 +19,16 @@ class ChipCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = .lightGray
+        layer.cornerRadius = 2.0
+        layer.masksToBounds = true
+        
         addSubview(label)
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 2.0),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2.0),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2.0),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2.0)
         ])
     }
     
@@ -37,8 +41,7 @@ class ChipCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.textColor = .red
-        label.backgroundColor = .green
+        label.textColor = .black
         return label
     }()
 }
