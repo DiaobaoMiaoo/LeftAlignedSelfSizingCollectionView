@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
 //    var viewModel: [String] = []
     var viewModel: [String] = ["12fesfsefse31", "231231231122331","12312312312","12312312312132332312fesfsefse3"]
+//   var viewModel: [String] = ["12fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse3"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +32,7 @@ class ViewController: UIViewController {
     
     @objc
     func tapped() {
-        viewModel.append(contentsOf: ["12fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse3"])
+        viewModel.append(contentsOf: ["12fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse312fesfsefse312312312311223311231231231212312312312132332312fesfsefse3"])
 //        viewModel.append(contentsOf: ["12fesfsefse31", "231231231122331","12312312312","12312312312132332312fesfsefse3"])
         container.viewModel = viewModel
     }
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
     
     private let button: UIButton = {
         let button = UIButton()
-        button.titleLabel?.text = "Add more"
+        button.setTitle("Add more", for: .normal)
         button.backgroundColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

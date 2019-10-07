@@ -48,7 +48,7 @@ class ChipContainerView: UIView {
     }
     
     private let collectionView: UICollectionView = {
-        let alignedFlowLayout = LeftLayout()
+        let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
         alignedFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
         collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")

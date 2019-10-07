@@ -32,8 +32,8 @@ class ChipCell: UICollectionViewCell {
         ])
         
         // This is one potential fix for cellWidth exceeding the collectionViewWidth
-        let maxWidth = UIScreen.main.bounds.width - 80.0
-        label.widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth).isActive = true
+//        let maxWidth = UIScreen.main.bounds.width - 80.0
+//        label.widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth).isActive = true
     }
     
     @available(*, unavailable)
