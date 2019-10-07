@@ -35,12 +35,16 @@ class LeftLayout: UICollectionViewFlowLayout {
     override func invalidateLayout() {
         super.invalidateLayout()
         cache.removeAll()
+        contentHeight = 0
+        print("--- invalidateLayout")
     }
     
     override func prepare() {
+        print("--- prepare")
         guard cache.isEmpty == true,
             let collectionView = collectionView
             else {
+                print("--- prepare failed")
                 return
         }
         
@@ -49,28 +53,35 @@ class LeftLayout: UICollectionViewFlowLayout {
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
             
-            let cellSize = delegate?.collectionView(collectionView, sizeForCellAtIndexPath: indexPath) ?? .zero
+            let currentCellSize = delegate?.collectionView(collectionView, sizeForCellAtIndexPath: indexPath) ?? .zero
+            let spacing = evaluatedMinimumInteritemSpacing(at: item)
+            let lastCellMaxX: CGFloat = lastCellFrame.origin.x + lastCellFrame.size.width
+            let lastCellMaxY: CGFloat = lastCellFrame.origin.y + lastCellFrame.size.height
             
             var frame: CGRect = .zero
             
-            if lastCellFrame.origin.x + lastCellFrame.size.width + cellSize.width > contentWidth {
+            if lastCellMaxX + currentCellSize.width + spacing > contentWidth {
+                // If we add the new cell to the same row and it exceeds the width of the collectionView minus insets
+                // Then we add the cell to a new row.
                 frame = CGRect(x: collectionView.contentInset.left,
-                                   y: lastCellFrame.origin.y + lastCellFrame.size.height + evaluatedMinimumInteritemSpacing(at: item),
-                                   width: min(cellSize.width, contentWidth),
-                                   height: cellSize.height)
+                               y: lastCellMaxY + spacing,
+                               width: min(currentCellSize.width, contentWidth),
+                               height: currentCellSize.height)
             } else {
-                frame = CGRect(x: lastCellFrame.origin.x + lastCellFrame.size.width + evaluatedMinimumInteritemSpacing(at: item),
-                                   y: lastCellFrame.origin.y + evaluatedMinimumInteritemSpacing(at: item),
-                                   width: min(cellSize.width, contentWidth),
-                                   height: cellSize.height)
+                // Otherwise we add the new cell to the same row.
+                frame = CGRect(x: lastCellMaxX + spacing,
+                               y: lastCellFrame.origin.y,
+                               width: min(currentCellSize.width, contentWidth),
+                               height: currentCellSize.height)
             }
             
+            print("--- prepare add attributes to cache \(frame)")
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame = frame
             cache.append(attributes)
             
             lastCellFrame = frame
-            contentHeight = max(contentHeight, frame.maxY)
+            contentHeight = max(contentHeight, frame.maxY + spacing)
         }
     }
     
@@ -83,15 +94,19 @@ class LeftLayout: UICollectionViewFlowLayout {
           visibleLayoutAttributes.append(attributes)
         }
       }
+        print("--- return visible attributes ")
       return visibleLayoutAttributes
     }
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-      return cache[indexPath.item]
-    }
     
     
-    
+//    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+//        guard indexPath.item < cache.count else {
+//            return nil
+//        }
+//        print("--- return attribute for item at \(indexPath) ")
+//        return cache[indexPath.item]
+//    }
     
     
     func evaluatedMinimumInteritemSpacing(at sectionIndex:Int) -> CGFloat {
