@@ -17,8 +17,9 @@ extension UICollectionViewLayoutAttributes {
 
 public class UICollectionViewLeftAlignedLayout: UICollectionViewFlowLayout {
     public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        
+        print("--- layoutAttributesForElements")
         var attributesCopy: [UICollectionViewLayoutAttributes] = []
+        
         if let attributes = super.layoutAttributesForElements(in: rect) {
             attributes.forEach({ attributesCopy.append($0.copy() as! UICollectionViewLayoutAttributes) })
         }
@@ -34,7 +35,13 @@ public class UICollectionViewLeftAlignedLayout: UICollectionViewFlowLayout {
         return attributesCopy
     }
     
+    public override func prepare() {
+        print("--- prepare")
+    }
+    
     public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
+        print("--- layoutAttributesForItem")
         
         if let currentItemAttributes = super.layoutAttributesForItem(at: indexPath as IndexPath)?.copy() as? UICollectionViewLayoutAttributes {
             let sectionInset = self.evaluatedSectionInsetForItem(at: indexPath.section)
@@ -43,6 +50,7 @@ public class UICollectionViewLeftAlignedLayout: UICollectionViewFlowLayout {
             
             if (isFirstItemInSection) {
                 currentItemAttributes.leftAlignFrameWithSectionInset(sectionInset)
+                print("--- firstItemInSection \(currentItemAttributes.frame)")
                 return currentItemAttributes
             }
             
@@ -62,12 +70,14 @@ public class UICollectionViewLeftAlignedLayout: UICollectionViewFlowLayout {
             if (isFirstItemInRow) {
                 // make sure the first item on a line is left aligned
                 currentItemAttributes.leftAlignFrameWithSectionInset(sectionInset)
+                print("--- firstItemInRow \(currentItemAttributes.frame)")
                 return currentItemAttributes
             }
             
             var frame = currentItemAttributes.frame
             frame.origin.x = previousFrameRightPoint + evaluatedMinimumInteritemSpacing(at: indexPath.section)
             currentItemAttributes.frame = frame
+            print("--- otherPlaceAttributes \(currentItemAttributes.frame)")
             return currentItemAttributes
         }
         return nil
