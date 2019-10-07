@@ -12,8 +12,8 @@ class ChipContainerView: UIView {
     
     var viewModel: [String] = [] {
         didSet {
-            collectionView.reloadData()
             collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.reloadData()
         }
     }
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		965EFEE5233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */; };
 		966F368D233CFDD5003C7D1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F368C233CFDD5003C7D1C /* AppDelegate.swift */; };
 		966F3691233CFDD5003C7D1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F3690233CFDD5003C7D1C /* ViewController.swift */; };
 		966F3694233CFDD5003C7D1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966F3692233CFDD5003C7D1C /* Main.storyboard */; };
@@ -16,12 +15,10 @@
 		966F36A1233CFE12003C7D1C /* ChipContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F36A0233CFE12003C7D1C /* ChipContainerView.swift */; };
 		966F36A3233CFF27003C7D1C /* ChipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F36A2233CFF27003C7D1C /* ChipCell.swift */; };
 		966F36C5233D022F003C7D1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F36C4233D022F003C7D1C /* SceneDelegate.swift */; };
+		96BF98242347D8A200EE0824 /* LeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF98232347D8A200EE0824 /* LeftAlignLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		965EFEE2233D307900A9AE8E /* FilterVCTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilterVCTest-Bridging-Header.h"; sourceTree = "<group>"; };
-		965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
-		965EFEE4233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		966F3689233CFDD5003C7D1C /* FilterVCTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterVCTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		966F368C233CFDD5003C7D1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		966F3690233CFDD5003C7D1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +29,7 @@
 		966F36A0233CFE12003C7D1C /* ChipContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipContainerView.swift; sourceTree = "<group>"; };
 		966F36A2233CFF27003C7D1C /* ChipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCell.swift; sourceTree = "<group>"; };
 		966F36C4233D022F003C7D1C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		96BF98232347D8A200EE0824 /* LeftAlignLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +79,7 @@
 		96D68C20233D0892000F2941 /* LeftAlignedFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
-				965EFEE4233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.h */,
-				965EFEE3233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m */,
-				965EFEE2233D307900A9AE8E /* FilterVCTest-Bridging-Header.h */,
+				96BF98232347D8A200EE0824 /* LeftAlignLayout.swift */,
 			);
 			path = LeftAlignedFlowLayout;
 			sourceTree = "<group>";
@@ -161,11 +157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				966F36C5233D022F003C7D1C /* SceneDelegate.swift in Sources */,
-				965EFEE5233D307A00A9AE8E /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				966F3691233CFDD5003C7D1C /* ViewController.swift in Sources */,
 				966F36A3233CFF27003C7D1C /* ChipCell.swift in Sources */,
 				966F36A1233CFE12003C7D1C /* ChipContainerView.swift in Sources */,
 				966F368D233CFDD5003C7D1C /* AppDelegate.swift in Sources */,
+				96BF98242347D8A200EE0824 /* LeftAlignLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,13 +309,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57B8H4VJ56;
 				INFOPLIST_FILE = FilterVCTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kemin.FilterVCTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FilterVCTest/LeftAlignedFlowLayout/FilterVCTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -334,13 +330,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57B8H4VJ56;
 				INFOPLIST_FILE = FilterVCTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kemin.FilterVCTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "FilterVCTest/LeftAlignedFlowLayout/FilterVCTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

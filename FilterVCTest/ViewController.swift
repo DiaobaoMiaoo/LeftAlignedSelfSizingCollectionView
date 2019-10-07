@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var viewModel = ["12fesfsefse31231231231122", "331123123123121231231231213", "2332312fesfsefse3123", "123123112233", "112312312312123123123121323323"]
+    var viewModel: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     @objc
     func tapped() {
-        viewModel += ["12fesfsefse3", "123123123", "112233", "112312312312123123123121323323", "12fesfsefse3", "123123123", "112233", "112312312312123123123121323323"]
+        viewModel.append(contentsOf: ["12fesfsefse312312312311223311231231231212312312312132332312fesfsefse3"])
         container.viewModel = viewModel
     }
     
