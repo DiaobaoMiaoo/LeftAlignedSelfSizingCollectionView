@@ -38,6 +38,9 @@ class ChipContainerView: UIView {
         addSubview(collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
+        if let layout = collectionView.collectionViewLayout as? LeftLayout {
+          layout.delegate = self
+        }
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -48,7 +51,7 @@ class ChipContainerView: UIView {
     }
     
     private let collectionView: UICollectionView = {
-        let alignedFlowLayout = UICollectionViewLeftAlignedLayout()
+        let alignedFlowLayout = LeftLayout()
         alignedFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: alignedFlowLayout)
         collectionView.register(ChipCell.self, forCellWithReuseIdentifier: "chipCell")
@@ -80,5 +83,15 @@ extension ChipContainerView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 5.0
+    }
+}
+
+extension ChipContainerView: PinterestLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, sizeForCellAtIndexPath indexPath: IndexPath) -> CGSize {
+        
+        let cell = ChipCell()
+        cell.text = viewModel[indexPath.row]
+        return cell.intrinsicContentSize
     }
 }

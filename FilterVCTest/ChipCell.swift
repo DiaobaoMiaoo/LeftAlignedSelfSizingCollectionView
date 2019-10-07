@@ -41,6 +41,11 @@ class ChipCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override open var intrinsicContentSize: CGSize {
+        return CGSize(width: label.intrinsicContentSize.width + 4,
+                      height: label.intrinsicContentSize.height + 4)
+    }
+    
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
