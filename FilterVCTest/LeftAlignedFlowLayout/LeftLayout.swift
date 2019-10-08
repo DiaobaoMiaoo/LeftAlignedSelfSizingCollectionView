@@ -55,25 +55,25 @@ class LeftLayout: UICollectionViewFlowLayout {
             
             let currentCellSize = delegate?.collectionView(collectionView, sizeForCellAtIndexPath: indexPath) ?? .zero
             let spacing = evaluatedMinimumInteritemSpacing(at: item)
-            let lastCellMaxX: CGFloat = lastCellFrame.origin.x + lastCellFrame.size.width
-            let lastCellMaxY: CGFloat = lastCellFrame.origin.y + lastCellFrame.size.height
             
             var frame: CGRect = .zero
             
-            if lastCellMaxX + currentCellSize.width + spacing > contentWidth {
+            if lastCellFrame.maxX + currentCellSize.width + spacing > contentWidth {
                 // If we add the new cell to the same row and it exceeds the width of the collectionView minus insets
                 // Then we add the cell to a new row.
                 frame = CGRect(x: collectionView.contentInset.left,
-                               y: lastCellMaxY + spacing,
-                               width: min(currentCellSize.width, contentWidth),
+                               y: lastCellFrame.maxY + spacing,
+                               width: min(currentCellSize.width, contentWidth - 10),
                                height: currentCellSize.height)
             } else {
                 // Otherwise we add the new cell to the same row.
-                frame = CGRect(x: lastCellMaxX + spacing,
+                frame = CGRect(x: lastCellFrame.maxX + spacing,
                                y: lastCellFrame.origin.y,
-                               width: min(currentCellSize.width, contentWidth),
+                               width: min(currentCellSize.width, contentWidth - 10),
                                height: currentCellSize.height)
             }
+            
+            print("--- contentWidth \(contentWidth)")
             
             print("--- prepare add attributes to cache \(frame)")
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -94,7 +94,8 @@ class LeftLayout: UICollectionViewFlowLayout {
           visibleLayoutAttributes.append(attributes)
         }
       }
-        print("--- return visible attributes ")
+        
+        print("--- return visible attributes \(visibleLayoutAttributes)")
       return visibleLayoutAttributes
     }
     

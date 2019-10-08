@@ -12,8 +12,7 @@ class ChipContainerView: UIView {
     
     var viewModel: [String] = [] {
         didSet {
-            collectionView.collectionViewLayout.invalidateLayout()
-            collectionView.reloadData()
+            reloadCollectionView()
         }
     }
     
@@ -29,6 +28,11 @@ class ChipContainerView: UIView {
         initialize()
     }
 
+    func reloadCollectionView() {
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         let height = collectionView.collectionViewLayout.collectionViewContentSize.height + collectionView.contentInset.top + collectionView.contentInset.bottom
         onHeightChanged?(height)
